@@ -1,12 +1,12 @@
 <template>
-  <div class="container mx-auto">
-    <div class="">
+  <div class="w-full">
+    <div class="sticky top-0 bg-white border-b w-full z-50 py-4">
       <Search @search-news="getNews"/>
     </div>
-    <div class="mt-12">
+    <div class="mt-12 container mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <Article
-          v-for="(article, index) in state.APIdata.articles"
+          v-for="(article, index) in APIdata.articles"
           :key="index"
           :title="article.title"
           :author="article.author"
@@ -23,8 +23,8 @@
 </template>
 <script>
 
-import { reactive } from 'vue'
-import api from '@/services/api'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import Search from '@/components/Search'
 import Article from '@/components/Article'
 
@@ -32,26 +32,11 @@ export default {
   name: 'Feed',
   components: { Search, Article },
   setup() {
-    const state = reactive ({
-      APIdata: []
-    })
-
-    function getNews(query) {
-      api
-        .request({
-          params: {q: query, lang: "en", page_size: 24 }
-        })
-        .then(response => {
-          state.APIdata = response.data
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+    const store = useStore()
 
     return {
-      state,
-      getNews
+      APIdata: computed(() => store.getters.APIdata),
+      getNews: () => store.dispatch('fetchNews')
     }
   }
 }
