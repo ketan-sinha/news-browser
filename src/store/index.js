@@ -3,7 +3,7 @@ import api from '@/services/api'
 
 export default createStore({
   state: {
-    search_query: '',
+    search_options: {},
     APIdata: []
   },
   getters: {
@@ -15,15 +15,15 @@ export default createStore({
       state.APIdata = data
     },
     
-    setSearchQuery (state, query) {
-      state.search_query = query
+    setSearchOptions (state, options) {
+      state.search_options = options
     }
   },
   actions: {
     fetchNews ({ state, commit }) {
       api
       .request({
-        params: {q: state.search_query, lang: "en", page_size: 24 }
+        params: {q: state.search_options.query, lang: state.search_options.lang, page_size: 24 }
       })
       .then(response => {
         commit('updateAPIdata', response.data)
@@ -33,8 +33,8 @@ export default createStore({
       })
     },
 
-    setSearchQuery ({ commit }, q) {
-      commit('setSearchQuery', q)
+    setSearchOptions ({ commit }, options) {
+      commit('setSearchOptions', options)
     }
   },
   modules: {
