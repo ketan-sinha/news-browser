@@ -7,7 +7,7 @@ export default createStore({
     APIdata: []
   },
   getters: {
-    search_query: state => state.search_query,
+    search_options: state => state.search_options,
     APIdata: state => state.APIdata
   },
   mutations: {
@@ -27,6 +27,7 @@ export default createStore({
       })
       .then(response => {
         commit('updateAPIdata', response.data)
+        
       })
       .catch(error => {
         console.log(error)
