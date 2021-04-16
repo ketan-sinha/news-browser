@@ -23,11 +23,10 @@ export default createStore({
     fetchNews ({ state, commit }) {
       api
       .request({
-        params: {q: state.search_options.query, lang: state.search_options.lang, page_size: 24 }
+        params: state.search_options
       })
       .then(response => {
-        commit('updateAPIdata', response.data)
-        
+        commit('updateAPIdata', response.data)        
       })
       .catch(error => {
         console.log(error)
