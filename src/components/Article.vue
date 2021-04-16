@@ -1,21 +1,4 @@
 <template>
-  <!-- <div class="max-w-xl w-full">
-    <div class="rounded-2xl border h-full" >
-      <div class="h-1/2 z-0">
-        <img class="rounded-t-2xl z-0 h-auto align-middle object-contain mix-blend-exclusion" :src="media">
-      </div>
-      <div class="h-1/2 rounded-b-2xl w-full z-10" :class="getTopic">
-        <div class="text-left">
-          <h2>{{ title }}</h2>
-          <h3 class="overflow-clip text-xs">{{ author }}</h3>
-        </div>
-        <div>
-          <p class="truncate overflow-ellipsis text-xs">{{ summary}}</p>
-        </div>
-        <a class="text-center align-text-bottom" :href="link">Link</a>
-      </div>
-    </div>
-  </div> -->
   <div :class="topicColor('border')" class="overflow-hidden border border-b-4 relative text-left max-h-96">
     <img :src="media" class="w-full object-cover h-2/6">
     <div class="m-2 h-3/6">
@@ -25,11 +8,11 @@
           <h3 :title="title" class="font-semibold leading-tight overflow-ellipsis line-clamp-2">{{ title }}</h3>
         </a>
         <div class="truncate">
-          <h4 class="inline text-sm mt-1 italic">{{ clean_url }} &#183; </h4>
-          <h4 class="inline text-sm mt-1 italic">{{ author }}</h4>
+          <h4 class="text-xs mt-1"><span class="font-mono">url: </span>{{ clean_url }}</h4>
+          <h4 class="text-xs mt-1 overflow-scroll" :title="author"><span class="font-mono">author: </span>{{ author }}</h4>
         </div>
       </div>
-      <div class="h-1/2 border-t">
+      <div class="1/2">
         <p class="overflow-scroll text-sm line-clamp-4 my-3">{{ summary }}</p>
       </div>
     </div>
