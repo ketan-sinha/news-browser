@@ -13,6 +13,9 @@ export default {
   name: 'App',
   components: {
     Feed
+  },
+  created () {
+    document.title = 'Newscatcher API browser'
   }
 }
 </script>
