@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full mx-6">
 		<form v-on:submit.prevent="submitSearch">
-			<input v-model="options.q" class="w-full appearance-none border-2 inline border-gray-400 focus:border-black max-w-sm md:max-w-3xl xl:max-w-6xl h-12 rounded-full px-4" type="text" placeholder="Search articles..."/>
+			<input v-model.lazy="options.q" class="w-full appearance-none border-2 inline border-gray-400 focus:border-black max-w-sm md:max-w-3xl xl:max-w-6xl h-12 rounded-full px-4" type="text" placeholder="Search articles..."/>
 		</form>
 		<div class="mt-2 my-auto">
 			<button @click="filterHidden = !filterHidden" title="Filters">
@@ -13,7 +13,9 @@
 				</svg>
 			</button>
 		</div>
-		<div v-if="!filterHidden" class="mb-3 z-0">
+	</div>
+	<transition name="slide-fade">
+		<div v-if="!filterHidden" class="w-full mx-6 mb-3 z-0">
 			<div class="inline ml-6">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline align-middle" viewBox="0 0 20 20" fill="currentColor">
 					<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd" />
@@ -53,16 +55,16 @@
 			</div>
 			<div class="inline-block relative align-middle ml-6 w-20">
 				<div class="absolute bottom-0 left-0">
-					<input class="rounded" type="checkbox" checked="true">
+					<input class="rounded text-blue-600" type="checkbox" checked="true">
 					<span class="text-xs ml-1">Title</span>
 				</div>
 				<div class="absolute left-0">
-					<input class="rounded" type="checkbox" checked="true">
+					<input class="rounded text-blue-600" type="checkbox" checked="true">
 					<span class="text-xs ml-1">Summary</span>
 				</div>
 			</div>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -72,6 +74,7 @@ import { useStore } from 'vuex'
 
 export default {
 	name: 'Search',
+	emits: ['search-news'],
 	setup(props, context) {
 		const lang_options = [
 			{ text: 'English', value: 'en' },
@@ -173,3 +176,19 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.slide-fade-enter-active {
+  transition: all 0.15s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.15s ease-in;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+</style>
