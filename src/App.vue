@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-2xl font-semibold -mt-8 mb-2 font-mono">newscatcherapi browser</h1>
+  <h1 class="text-3xl font-semibold -mt-8 mb-2 font-mono">newscatcherapi browser</h1>
   <Feed/>
 </template>
 
