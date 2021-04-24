@@ -10,11 +10,11 @@
       </svg>
     </div>
     <div v-else>
-      <div v-if="search_options.q" class="w-full container mx-auto mt-6">
+      <div v-if="search_options.q" class="w-full container mx-1 md:mx-auto mt-6">
         <h2 class="text-lg text-gray-500 mt-2 text-left"><span class="font-semibold">{{ APIdata.total_hits }}</span> results for "<span class="font-semibold">{{ search_options.q }}</span>"</h2>
       </div>
       <div class="mt-6 container mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 mx-1 md:mx-0 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <Article
             v-for="(article, index) in APIdata.articles"
             :key="index"
@@ -29,11 +29,11 @@
           />
         </div>
       </div>
-      <div v-if="APIdata.status == 'ok'" class="container mx-auto relative mt-4 pb-16">
-        <div class="inline absolute left-0 text-gray-500 text-sm font-mono">
+      <div v-if="APIdata.status == 'ok'" class="container md:mx-auto relative mt-4 pb-16">
+        <div class="inline absolute left-0 ml-2 text-gray-500 text-sm font-mono">
           page <span class="font-semibold">{{ APIdata.page }}</span> of <span class="font-semibold">{{ APIdata.total_pages }}</span>
           <div class="inline ml-4">
-            <select v-model="search_options.page" @change="selectPage" class="appearance-none border border-b-4 px-6 border-gray-300 hover:border-gray-500" title="Go to page">
+            <select v-model="search_options.page" @change="selectPage" class="appearance-none border border-b-4 px-3 md:px-6 border-gray-300 hover:border-gray-500" title="Go to page">
               <option disabled value="">Page</option>
               <option v-for="page in APIdata.total_pages" :key="page" :value="page" :selected="page == search_options.page">
                 {{ page }}
@@ -41,9 +41,9 @@
             </select>
           </div>
         </div>
-        <div class="inline absolute right-0 text-gray-500 font-mono text-sm">
+        <div class="inline absolute right-0 mr-2 text-gray-500 font-mono text-sm">
           <button :disabled="!hasPrevPage" @click="prevPage" class="px-4 py-2 border border-b-4 border-gray-300 hover:border-gray-500 font-semibold">previous</button>
-          <button :disabled="!hasNextPage" @click="nextPage" class="px-4 py-2 border border-b-4 border-gray-300 hover:border-gray-500 ml-4 font-semibold">next</button>
+          <button :disabled="!hasNextPage" @click="nextPage" class="px-4 py-2 border border-b-4 border-gray-300 hover:border-gray-500 ml-2 md:ml-4 font-semibold">next</button>
         </div>
       </div>
     </div>
