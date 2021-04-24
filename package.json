@@ -9,6 +9,8 @@
     "dev": "vite"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.0.0",
+    "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/line-clamp": "^0.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
