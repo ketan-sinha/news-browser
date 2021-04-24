@@ -1,5 +1,7 @@
 # news-browser
 
+A browser for the [Newscatcher Free News API](https://free-docs.newscatcherapi.com/). Deployed [live on Vercel](https://newscatcher-browser.vercel.app/)!
+
 ## Project setup
 ```
 npm install
@@ -14,11 +16,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
