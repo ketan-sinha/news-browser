@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full md:mx-6">
 		<form v-on:submit.prevent="submitSearch">
-			<input v-model.lazy="options.q" class="w-full appearance-none border-2 inline border-gray-400 focus:border-black max-w-sm md:max-w-3xl xl:max-w-6xl h-12 rounded-full px-4" type="text" placeholder="Search articles..."/>
+			<input v-model.lazy="options.q" class="w-full appearance-none border-2 inline border-gray-400 focus:border-black max-w-sm md:max-w-3xl xl:max-w-6xl h-12 rounded-full px-4" type="search" placeholder="Search articles..."/>
 		</form>
 		<div class="mt-2 my-auto">
 			<button @click="filterHidden = !filterHidden" title="Filters">
