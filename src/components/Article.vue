@@ -1,9 +1,11 @@
 <template>
-  <div :class="topicColor('border')" class="overflow-hidden border border-b-4 relative text-left max-h-96">
+  <div :class="topicColor('border')" class="overflow-hidden border border-b-4 relative text-left dark:text-gray-200 max-h-96">
     <img :src="media" class="w-full object-cover h-2/6">
     <div class="m-2 h-3/6">
       <div class="h-1/2">
-        <p :class="topicColor('text')" class="font-semibold text-xs mb-1">{{ topic }}</p>
+        <div class="mb-1">
+          <span :class="topicColor('bg')" class="rounded-full py-0.5 px-2 text-xs text-white">{{ topic }}</span>
+        </div>
         <a :href="link" class="hover:underline" target="_blank" rel="noopener noreferrer">
           <h3 :title="title" class="font-semibold leading-tight overflow-ellipsis line-clamp-2">{{ title }}</h3>
         </a>

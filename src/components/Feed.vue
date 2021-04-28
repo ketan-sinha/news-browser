@@ -1,11 +1,11 @@
 <template>
   <div class="w-full">
-    <div class="sticky top-0 bg-white border-b shadow w-full z-50 pt-4">
+    <div class="sticky bg-white dark:bg-gray-700 top-0 shadow-md w-full z-40 pt-4">
       <Search @search-news="getNews"/>
     </div>
-    <div v-if='loading' class="border border-gray-300 border-b-4 max-w-sm mx-auto mt-12">
-      <div class="mt-8 text-xl text-gray-500 font-mono font-semibold">fetching from API...</div>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mt-6 mb-6 animate-bounce mx-auto stroke-current text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div v-if='loading' class="border border-b-4 border-gray-300 dark:border-gray-700 dark:bg-gray-600 max-w-sm mx-auto mt-12">
+      <div class="mt-8 text-xl text-gray-500 dark:text-gray-900 font-mono font-semibold">fetching from API...</div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mt-6 mb-6 animate-bounce mx-auto stroke-current text-gray-400 dark:text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
       </svg>
     </div>
@@ -33,7 +33,7 @@
         <div class="inline absolute left-0 ml-2 text-gray-500 text-sm font-mono">
           page <span class="font-semibold">{{ APIdata.page }}</span> of <span class="font-semibold">{{ APIdata.total_pages }}</span>
           <div class="inline ml-4">
-            <select v-model="search_options.page" @change="selectPage" class="appearance-none border border-b-4 px-3 md:px-6 border-gray-300 hover:border-gray-500" title="Go to page">
+            <select v-model="search_options.page" @change="selectPage" class="appearance-none border border-b-4 px-3 md:px-6 dark:bg-gray-900 dark:text-gray-200 border-gray-300 dark:border-gray-500 hover:border-gray-500 dark:hover:border-gray-200" title="Go to page">
               <option disabled value="">Page</option>
               <option v-for="page in APIdata.total_pages" :key="page" :value="page" :selected="page == search_options.page">
                 {{ page }}
@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="inline absolute right-0 mr-2 text-gray-500 font-mono text-sm">
-          <button :disabled="!hasPrevPage" @click="prevPage" class="px-4 py-2 border border-b-4 border-gray-300 hover:border-gray-500 font-semibold">previous</button>
-          <button :disabled="!hasNextPage" @click="nextPage" class="px-4 py-2 border border-b-4 border-gray-300 hover:border-gray-500 ml-2 md:ml-4 font-semibold">next</button>
+          <button :disabled="!hasPrevPage" @click="prevPage" class="px-4 py-2 dark:bg-gray-900 dark:text-gray-200 border border-b-4 border-gray-300 dark:border-gray-500 hover:border-gray-500 dark:hover:border-gray-200 font-semibold">previous</button>
+          <button :disabled="!hasNextPage" @click="nextPage" class="px-4 py-2 dark:bg-gray-900 dark:text-gray-200 border border-b-4 border-gray-300 dark:border-gray-500 hover:border-gray-500 dark:hover:border-gray-200 md:ml-4 font-semibold">next</button>
         </div>
       </div>
     </div>
